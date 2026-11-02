@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cybersecurity portfolio of Md. Shahin Uz Zaman — WordPress security, malware removal, VAPT, OSINT and security consulting.">
+  <title>Md. Shahin Uz Zaman | Cybersecurity Specialist</title>
+  <style>
+    :root {
+      --site-primary: #071c1a;
+      --site-secondary: #103c35;
+      --site-background: #06110f;
+      --site-on-primary: #f1fff9;
+      --site-on-secondary: #e7fff5;
+      --site-on-background: #e8f4ef;
+      --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --site-heading-scale: 1;
+      --site-spacing-scale: 1;
+      --site-radius-scale: 1;
+      --site-decoration-opacity: 1;
+      --accent: #7cf5c7;
+      --muted: #9cb7ad;
+      --line: rgba(170, 235, 210, .14);
+      --panel: #0b201c;
+      --panel-soft: #0d2923;
+      --warning: #d9f99d;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--site-background); color: var(--site-on-background); font-family: var(--site-font-body); }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .app { min-height: 100vh; width: 100%; overflow: hidden; border-radius: 0; background-color: var(--site-background); position: relative; }
+    .app::before, .app::after { content: ""; position: absolute; pointer-events: none; opacity: var(--site-decoration-opacity); z-index: 0; filter: blur(1px); }
+    .app::before { width: 520px; height: 520px; top: -230px; right: -160px; background: radial-gradient(circle, rgba(67, 210, 157, .16), transparent 68%); }
+    .app::after { width: 440px; height: 440px; top: 900px; left: -250px; background: radial-gradient(circle, rgba(48, 147, 121, .12), transparent 70%); }
+    .container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; position: relative; z-index: 1; }
+    .nav-wrap { position: sticky; top: 0; z-index: 20; background: rgba(6, 17, 15, .88); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.04em; }
+    .brand-mark { width: 37px; height: 37px; border-radius: 12px; display: grid; place-items: center; color: #052018; background: var(--accent); font-size: 19px; font-weight: 900; box-shadow: 0 0 24px rgba(124,245,199,.18); }
+    .brand span:last-child { font-size: 15px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: var(--muted); font-size: 13px; font-weight: 650; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: calc(12px * var(--site-radius-scale)); padding: 13px 18px; font-size: 13px; font-weight: 800; transition: .2s ease; }
+    .nav-cta, .btn-primary { color: #052018; background: var(--accent); border: 1px solid var(--accent); }
+    .nav-cta:hover, .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124,245,199,.18); }
+    .menu-toggle { display: none; background: transparent; border: 1px solid var(--line); color: var(--site-on-background); border-radius: 10px; padding: 9px 11px; font-size: 20px; }
+    .hero { padding: clamp(76px, 11vw, 132px) 0 92px; display: grid; grid-template-columns: 1.25fr .75fr; align-items: center; gap: 70px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); border: 1px solid rgba(124,245,199,.24); background: rgba(124,245,199,.06); border-radius: 999px; padding: 8px 13px; font-size: 11px; text-transform: uppercase; letter-spacing: .13em; font-weight: 800; }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px rgba(124,245,199,.1); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-family: var(--site-font-heading); font-size: calc(clamp(44px, 6.5vw, 78px) * var(--site-heading-scale)); line-height: .99; letter-spacing: -.065em; margin: 24px 0 22px; max-width: 720px; }
+    h1 .highlight { color: var(--accent); }
+    .hero-copy { max-width: 620px; color: var(--muted); font-size: 16px; line-height: 1.85; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .btn-outline { border: 1px solid rgba(196, 235, 218, .22); color: var(--site-on-background); background: rgba(255,255,255,.02); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 35px; color: var(--muted); font-size: 12px; }
+    .hero-meta strong { color: var(--site-on-background); display: block; font-size: 14px; margin-bottom: 4px; }
+    .terminal-card { border: 1px solid rgba(124,245,199,.2); background: linear-gradient(145deg, rgba(16,60,53,.72), rgba(8,27,24,.92)); border-radius: calc(22px * var(--site-radius-scale)); padding: 23px; box-shadow: 0 25px 80px rgba(0,0,0,.28); transform: rotate(1.5deg); }
+    .terminal-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .dots { display: flex; gap: 6px; }
+    .dots i { width: 7px; height: 7px; border-radius: 50%; background: #5a8977; }
+    .terminal-body { padding: 24px 0 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 2.1; color: #a9c9bb; }
+    .terminal-body .prompt { color: var(--accent); }
+    .terminal-body .ok { color: var(--warning); }
+    .terminal-status { display: flex; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 17px; color: var(--muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .section { padding: 88px 0; border-top: 1px solid var(--line); }
+    .section-heading { max-width: 650px; margin-bottom: 38px; }
+    .kicker { color: var(--accent); text-transform: uppercase; letter-spacing: .16em; font-size: 10px; font-weight: 850; margin-bottom: 14px; }
+    h2 { font-size: calc(clamp(30px, 4vw, 45px) * var(--site-heading-scale)); line-height: 1.08; letter-spacing: -.05em; margin-bottom: 14px; }
+    .section-heading p, .about-text { color: var(--muted); line-height: 1.85; font-size: 14px; }
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 65px; align-items: start; }
+    .about-panel { background: var(--site-primary); border: 1px solid var(--line); border-radius: calc(18px * var(--site-radius-scale)); padding: 26px; }
+    .about-panel .initials { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 16px; background: var(--site-secondary); color: var(--accent); font-size: 20px; font-weight: 900; margin-bottom: 22px; }
+    .about-panel h3 { font-size: 19px; margin-bottom: 8px; }
+    .about-panel p { color: var(--muted); font-size: 12px; line-height: 1.7; margin-bottom: 0; }
+    .about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 17px; }
+    .fact { background: rgba(255,255,255,.025); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .fact strong { color: var(--accent); display: block; font-size: 18px; margin-bottom: 5px; }
+    .fact span { color: var(--muted); font-size: 10px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .skill { background: var(--panel); border: 1px solid var(--line); border-radius: calc(14px * var(--site-radius-scale)); padding: 19px; min-height: 125px; transition: .2s; }
+    .skill:hover, .service:hover { border-color: rgba(124,245,199,.45); transform: translateY(-3px); }
+    .skill-icon { color: var(--accent); font-size: 21px; margin-bottom: 15px; }
+    .skill h3 { font-size: 13px; margin-bottom: 6px; }
+    .skill p { color: var(--muted); font-size: 11px; line-height: 1.6; margin: 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .service { background: linear-gradient(150deg, var(--panel-soft), var(--panel)); border: 1px solid var(--line); border-radius: calc(16px * var(--site-radius-scale)); padding: 24px; min-height: 220px; transition: .2s; }
+    .service-number { color: var(--accent); font-family: ui-monospace, monospace; font-size: 11px; margin-bottom: 28px; }
+    .service h3 { font-size: 17px; letter-spacing: -.025em; margin-bottom: 10px; }
+    .service p { color: var(--muted); font-size: 12px; line-height: 1.75; margin: 0; }
+    .approach { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: steps; }
+    .step { padding: 21px; border-left: 1px solid rgba(124,245,199,.35); background: rgba(255,255,255,.018); }
+    .step span { color: var(--accent); font: 11px ui-monospace, monospace; }
+    .step h3 { font-size: 14px; margin: 13px 0 8px; }
+    .step p { color: var(--muted); font-size: 11px; line-height: 1.7; margin: 0; }
+    .contact-box { display: grid; grid-template-columns: 1fr .8fr; gap: 45px; align-items: center; background: linear-gradient(120deg, #103c35, #0a211c 75%); border: 1px solid rgba(124,245,199,.22); border-radius: calc(22px * var(--site-radius-scale)); padding: clamp(26px, 5vw, 55px); }
+    .contact-box h2 { max-width: 550px; }
+    .contact-box p { color: #b2cfc2; font-size: 13px; line-height: 1.8; max-width: 520px; }
+    .contact-links { display: grid; gap: 11px; }
+    .contact-link { border: 1px solid rgba(213,255,235,.17); background: rgba(0,0,0,.12); border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+    .contact-link span:first-child { color: #a8c9ba; }
+    .contact-link strong { color: #f0fff8; font-size: 12px; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; align-items: center; }
+    .footer-inner a { color: var(--accent); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; gap: 42px; padding-top: 76px; }
+      .terminal-card { max-width: 520px; transform: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .approach { grid-template-columns: repeat(2, 1fr); }
+      .contact-box { grid-template-columns: 1fr; gap: 25px; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 34px, 1120px); }
+      nav { min-height: 68px; }
+      .menu-toggle { display: block; }
+      .nav-cta { display: none; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 20px 22px 24px; background: #081a16; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 18px; }
+      .nav-links.open { display: flex; }
+      .hero { padding: 68px 0 65px; }
+      h1 { font-size: calc(clamp(42px, 13vw, 58px) * var(--site-heading-scale)); }
+      .hero-copy { font-size: 14px; }
+      .hero-meta { gap: 16px; }
+      .section { padding: 65px 0; }
+      .skills-grid, .services-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .skill { padding: 15px; min-height: 130px; }
+      .service { padding: 17px; min-height: 225px; }
+      .approach { grid-template-columns: 1fr 1fr; }
+      .contact-box { padding: 25px 20px; }
+      .contact-link { align-items: flex-start; flex-direction: column; gap: 6px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <main class="app" id="top">
+    <div class="nav-wrap">
+      <div class="container">
+        <nav aria-label="Main navigation">
+          <a class="brand" href="#top" aria-label="Shahin cybersecurity portfolio home"><span class="brand-mark">S</span><span>SHAHIN<span style="color:var(--accent)">.SEC</span></span></a>
+          <div class="nav-links" id="navLinks">
+            <a href="#about">About</a><a href="#skills">Skills</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#contact">Contact</a>
+          </div>
+          <a class="nav-cta" href="#contact">Let's Talk <span>↗</span></a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        </nav>
+      </div>
+    </div>
+
+    <section class="container hero">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Cybersecurity • Ethical Hacking • IT Support</div>
+        <h1>Securing your<br><span class="highlight">digital world.</span></h1>
+        <p class="hero-copy">I'm <strong style="color:#effff7">Md. Shahin Uz Zaman</strong> — an Ethical Hacker and Cybersecurity Specialist focused on WordPress security, malware removal, vulnerability assessment, and open-source intelligence. I help businesses identify risks and strengthen their digital presence.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#contact">Get in touch <span>↗</span></a><a class="btn btn-outline" href="#services">Explore services <span>↓</span></a></div>
+        <div class="hero-meta"><div><strong>5+ Years</strong>WordPress security experience</div><div><strong>Security First</strong>Practical, risk-aware support</div><div><strong>Remote Ready</strong>Available for global clients</div></div>
+      </div>
+      <div class="terminal-card" aria-label="Decorative security terminal illustration">
+        <div class="terminal-top"><div class="dots"><i></i><i></i><i></i></div><span>security-session.sh</span><span>● LIVE</span></div>
+        <div class="terminal-body">
+          <div><span class="prompt">root@shahin:~$</span> initialize_security</div>
+          <div>[01] Asset discovery ........ <span class="ok">READY</span></div>
+          <div>[02] Vulnerability review ... <span class="ok">READY</span></div>
+          <div>[03] Threat assessment ..... <span class="ok">READY</span></div>
+          <div>[04] Security hardening .... <span class="ok">READY</span></div>
+          <br>
+          <div><span class="prompt">root@shahin:~$</span> status --check</div>
+          <div style="color:var(--accent)">» Proactive defense. Stronger systems.</div>
+          <div><span class="prompt">root@shahin:~$</span> <span style="animation:blink 1s steps(2,start) infinite">_</span></div>
+        </div>
+        <div class="terminal-status"><span>● Systems approach</span><span>Ethical operations</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid reveal">
+        <div class="section-heading"><div class="kicker">01 / About me</div><h2>Curiosity meets<br>cyber defense.</h2><p>Helping people and businesses build safer, more resilient digital experiences.</p></div>
+        <div>
+          <p class="about-text">My work brings together hands-on WordPress troubleshooting, security analysis, and a practical understanding of how digital systems are built and maintained. I have a background in graphic design and web-focused work, which helps me look at security from both the technical and user-experience sides.</p>
+          <p class="about-text">I completed the Arena Web Security (AWCP) program in Cyber Security & Ethical Hacking, strengthening my skills in vulnerability identification and malware removal. I value clear communication, responsible testing, and actionable recommendations over unnecessary technical jargon.</p>
+          <div class="about-facts"><div class="fact"><strong>AWCP</strong><span>Arena Web Certified Professional training</span></div><div class="fact"><strong>Ethical</strong><span>Responsible security practices</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal"><div class="kicker">02 / Technical skills</div><h2>Tools, techniques & focus areas.</h2><p>A practical toolkit for understanding attack surfaces, finding weaknesses, and improving security posture.</p></div>
+        <div class="skills-grid">
+          <article class="skill reveal"><div class="skill-icon">⌘</div><h3>Vulnerability Assessment</h3><p>Web application review, risk identification and security testing.</p></article>
+          <article class="skill reveal"><div class="skill-icon">◈</div><h3>WordPress Security</h3><p>Malware cleanup, hacked-site recovery and hardening.</p></article>
+          <article class="skill reveal"><div class="skill-icon">⌕</div><h3>OSINT & Recon</h3><p>Open-source intelligence and external asset discovery.</p></article>
+          <article class="skill reveal"><div class="skill-icon">⌁</div><h3>Web Security</h3><p>Common web risks, configuration reviews and remediation.</p></article>
+          <article class="skill reveal"><div class="skill-icon">▣</div><h3>Linux & Kali</h3><p>Linux-based security workflows and assessment tooling.</p></article>
+          <article class="skill reveal"><div class="skill-icon">⛨</div><h3>Threat Intelligence</h3><p>Threat research, indicators and security awareness.</p></article>
+          <article class="skill reveal"><div class="skill-icon">⌘</div><h3>IT Support</h3><p>Technical troubleshooting and practical IT operations.</p></article>
+          <article class="skill reveal"><div class="skill-icon">⌗</div><h3>Security Reporting</h3><p>Clear findings, prioritization and remediation guidance.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-heading reveal"><div class="kicker">03 / What I do</div><h2>Security services built around your needs.</h2><p>From a compromised WordPress site to a broader external security review, the goal is simple: understand the risk and help you take the next right step.</p></div>
+        <div class="services-grid">
+          <article class="service reveal"><div class="service-number">SERVICE_01</div><h3>Vulnerability Assessment</h3><p>Authorized web security assessment to identify weaknesses, explain their impact, and provide practical remediation guidance.</p></article>
+          <article class="service reveal"><div class="service-number">SERVICE_02</div><h3>WordPress Malware Removal</h3><p>Malware investigation, cleanup support, hacked website recovery, security hardening and post-cleanup recommendations.</p></article>
+          <article class="service reveal"><div class="service-number">SERVICE_03</div><h3>OSINT & Asset Discovery</h3><p>Public-information research and external attack-surface discovery to help organizations understand their digital footprint.</p></article>
+          <article class="service reveal"><div class="service-number">SERVICE_04</div><h3>Web Security Consulting</h3><p>Security guidance for website owners, small businesses and teams looking to improve their security practices.</p></article>
+          <article class="service reveal"><div class="service-number">SERVICE_05</div><h3>Threat Intelligence Research</h3><p>Structured open-source research and threat-context support to help inform security decisions.</p></article>
+          <article class="service reveal"><div class="service-number">SERVICE_06</div><h3>IT Support & Troubleshooting</h3><p>Practical IT assistance, technical troubleshooting and operational support for day-to-day technology needs.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="approach">
+      <div class="container">
+        <div class="section-heading reveal"><div class="kicker">04 / My approach</div><h2>Clear process. Responsible outcomes.</h2><p>Every engagement starts with permission and a shared understanding of the objective.</p></div>
+        <div class="approach">
+          <div class="step reveal"><span>STEP 01</span><h3>Understand</h3><p>Discuss scope, goals, access and authorization before work begins.</p></div>
+          <div class="step reveal"><span>STEP 02</span><h3>Assess</h3><p>Review the agreed systems and identify relevant security concerns.</p></div>
+          <div class="step reveal"><span>STEP 03</span><h3>Explain</h3><p>Share findings in clear language with sensible risk priorities.</p></div>
+          <div class="step reveal"><span>STEP 04</span><h3>Improve</h3><p>Provide remediation guidance and help strengthen defenses.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div><div class="kicker">05 / Contact</div><h2>Let's make your digital presence safer.</h2><p>Have a security concern, a WordPress site that needs attention, or a project to discuss? Send me a message and tell me what you need help with.</p><a class="btn btn-primary" href="https://wa.me/8801717591208" target="_blank" rel="noopener">Message on WhatsApp ↗</a></div>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:rubel.shahin@gmail.com"><span>Email</span><strong>rubel.shahin@gmail.com ↗</strong></a>
+            <a class="contact-link" href="https://wa.me/8801717591208" target="_blank" rel="noopener"><span>WhatsApp / Phone</span><strong>+880 1717-591208 ↗</strong></a>
+            <a class="contact-link" href="https://www.fiverr.com/s/0bp4Ld2" target="_blank" rel="noopener"><span>Freelance profile</span><strong>View Fiverr gig ↗</strong></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><div class="container footer-inner"><span>© <span id="year">2026</span> Md. Shahin Uz Zaman. All rights reserved.</span><span>Designed with a security-first mindset · <a href="#top">Back to top ↑</a></span></div></footer>
+  </main>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
